@@ -1,20 +1,19 @@
-require('dotenv').config();
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 
 const pool = new Pool({
-    user: process.env.DB_USER || 'postgres',
-    host: process.env.DB_HOST || 'localhost',
-    database: process.env.DB_NAME || 'aai_cms',
-    password: process.env.DB_PASSWORD || 'password',
-    port: process.env.DB_PORT || 5432,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
-pool.on('error', (err, client) => {
-    console.error('Unexpected error on idle client', err);
-    process.exit(-1);
-});
+// optional: test connection
+pool.connect()
+  .then(() => {
+    console.log("Connected to Neon PostgreSQL database 🚀");
+  })
+  .catch((err) => {
+    console.error("Database connection error:", err);
+  });
 
-module.exports = {
-    query: (text, params) => pool.query(text, params),
-    pool
-};
+module.exports = { pool };
