@@ -1,0 +1,17 @@
+C:\Users\hp\Desktop\AAI\backend\routes\cr.js:90
+    const cr_id = \`AAI-CR-\${year}-\${count.toString().padStart(4, '0')}\`;
+                  ^
+
+SyntaxError: Invalid or unexpected token
+    at wrapSafe (node:internal/modules/cjs/loader:1692:18)
+    at Module._compile (node:internal/modules/cjs/loader:1735:20)
+    at Object..js (node:internal/modules/cjs/loader:1893:10)
+    at Module.load (node:internal/modules/cjs/loader:1481:32)
+    at Module._load (node:internal/modules/cjs/loader:1300:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.require (node:internal/modules/cjs/loader:1504:12)
+    at require (node:internal/modules/helpers:152:16)
+    at Object.<anonymous> (C:\Users\hp\Desktop\AAI\backend\server.js:6:18)
+
+Node.js v24.11.1
