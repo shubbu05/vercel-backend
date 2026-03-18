@@ -43,7 +43,9 @@ pool
 const PORT = process.env.PORT || 5000;
 
 // ✅ only listen locally
-
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 // ✅ required for Vercel serverless
 module.exports = app;
