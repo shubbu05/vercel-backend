@@ -47,5 +47,9 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
+app.get("/test", (req, res) => {
+  res.send("Routes working");
+});
+
 // ✅ required for Vercel serverless
 module.exports = app;
