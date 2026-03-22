@@ -5,6 +5,7 @@ const cors = require("cors");
 const { pool } = require("./db");
 
 const userRoutes = require("./routes/users");
+console.log("🔥 Loading auth routes...");
 const authRoutes = require("./routes/auth");
 const crRoutes = require("./routes/cr");
 const implementRoutes = require("./routes/implement");
@@ -37,7 +38,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("AAI CMS Backend Running 🚀");
 });
-console.log("🔥 Loading auth routes...");
+
 
 app.get("/test", (req, res) => {
   res.send("Routes working ✅");
