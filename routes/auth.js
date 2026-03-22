@@ -1,4 +1,5 @@
 const express = require('express');
+console.log("✅ Auth routes file loaded");
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
