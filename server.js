@@ -12,6 +12,9 @@ const reportRoutes = require("./routes/reports");
 
 const app = express();
 
+/* ========================
+   ✅ CORS CONFIG
+======================== */
 app.use(
   cors({
     origin: [
@@ -23,33 +26,64 @@ app.use(
   })
 );
 
+/* ========================
+   ✅ MIDDLEWARE
+======================== */
 app.use(express.json());
 
+/* ========================
+   ✅ HEALTH CHECK ROUTES
+======================== */
 app.get("/", (req, res) => {
   res.send("AAI CMS Backend Running 🚀");
 });
 
+app.get("/test", (req, res) => {
+  res.send("Routes working ✅");
+});
+
+/* ========================
+   ✅ API ROUTES
+======================== */
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/cr", crRoutes);
 app.use("/api/implement", implementRoutes);
 app.use("/api/reports", reportRoutes);
 
-pool
-  .connect()
-  .then(() => console.log("Database connected successfully"))
-  .catch((err) => console.error("Database connection error:", err));
+/* ========================
+   ✅ DATABASE CONNECTION CHECK
+======================== */
+(async () => {
+  try {
+    await pool.connect();
+    console.log("✅ Database connected successfully");
+  } catch (err) {
+    console.error("❌ Database connection error:", err);
+  }
+})();
 
+/* ========================
+   ✅ ERROR HANDLER (IMPORTANT)
+======================== */
+app.use((err, req, res, next) => {
+  console.error("🔥 Global Error:", err.stack);
+  res.status(500).json({
+    success: false,
+    message: "Internal Server Error",
+  });
+});
+
+/* ========================
+   ✅ START SERVER
+======================== */
 const PORT = process.env.PORT || 5000;
 
-// ✅ only listen locally
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
 
-app.get("/test", (req, res) => {
-  res.send("Routes working");
-});
-
-// ✅ required for Vercel serverless
+/* ========================
+   ✅ EXPORT (optional)
+======================== */
 module.exports = app;
