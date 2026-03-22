@@ -37,6 +37,7 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("AAI CMS Backend Running 🚀");
 });
+console.log("🔥 Loading auth routes...");
 
 app.get("/test", (req, res) => {
   res.send("Routes working ✅");
